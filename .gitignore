@@ -1,0 +1,11 @@
+# Entornos y secretos
+.env
+.venv/
+__pycache__/
+
+# Node
+node_modules/
+dist/
+
+# Sistema
+.DS_Store
