@@ -22,6 +22,20 @@ python -m scripts.probar_conexion   # 3. la API puede conectarse
 python -m scripts.ver_esquema       # 4. los modelos no tienen errores
 ```
 
+## Comandos de Alembic
+
+Desde `backend/` con el entorno activo:
+
+```bash
+alembic current                                  # en qué migración está la base de datos
+alembic history                                  # lista de migraciones
+alembic check                                    # ¿hay cambios en los modelos sin migración?
+alembic revision --autogenerate -m "mensaje"     # generar una migración (revisarla antes de aplicar)
+alembic upgrade head                             # aplicar todas las migraciones pendientes
+alembic downgrade -1                             # deshacer la última migración
+alembic downgrade base                           # deshacer todas (borra las tablas y sus datos)
+```
+
 ## Comandos de Docker Compose
 
 Desde la raíz del repositorio:
