@@ -6,6 +6,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.database import get_db
+from app.dependencies import get_usuario_actual
 from app.models import Usuario
 from app.schemas import Token, UsuarioCrear, UsuarioRespuesta
 from app.security import crear_token_acceso, hashear_password, verificar_password
@@ -55,3 +56,8 @@ def iniciar_sesion(
         )
 
     return Token(access_token=crear_token_acceso(usuario.id))
+
+
+@router.get("/yo", response_model=UsuarioRespuesta)
+def leer_usuario_actual(usuario: Annotated[Usuario, Depends(get_usuario_actual)]):
+    return usuario

@@ -23,3 +23,16 @@ def crear_token_acceso(usuario_id: int) -> str:
     payload = {"sub": str(usuario_id), "exp": expira}
     return jwt.encode(payload, settings.secret_key, algorithm=settings.algorithm)
 
+
+def decodificar_token(token: str) -> int | None:
+    try:
+        payload = jwt.decode(
+            token,
+            settings.secret_key,
+            algorithms=[settings.algorithm],
+            options={"require": ["sub", "exp"]},
+        )
+    except jwt.InvalidTokenError:
+        return None
+    return int(payload["sub"])
+
