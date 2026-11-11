@@ -19,3 +19,8 @@ class UsuarioRespuesta(BaseModel):
     email: EmailStr
     rol: Rol
     creado_en: datetime
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
